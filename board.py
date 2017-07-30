@@ -9,13 +9,10 @@ class Board:
     def __str__(self):
         result = ""
         for row in self.board:
-            result += "----+" * len(row) + "\n"
+            result += "-----+" * len(row) + "\n"
             for col in row:
-                if col:
-                    result += "%3.0d |" % col
-                else:
-                    result += "    |"
+                result += " %3s |" % col
             result += "\n"
-        result += "----+" * len(row) + "\n"
+        result += "-----+" * len(row) + "\n"
         return result
 

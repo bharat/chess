@@ -6,6 +6,7 @@ import random
 import copy
 
 from board import Board
+from piece import Knight, Piece
 
 def calculate_possible_moves(board):
     moves = [[-2, -1], [-2, 1], [2, -1], [2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2]]
@@ -31,7 +32,7 @@ def legal_moves(board, possible_moves):
 max_d = 0
 def tour(board, possible_moves, y, x, d):
     new_board = copy.deepcopy(board)
-    new_board.board[y][x] = d
+    new_board.board[y][x] = Knight()
 
     if d == board.board_size ** 2:
         return new_board
@@ -51,6 +52,7 @@ def tour(board, possible_moves, y, x, d):
         if not new_board.board[ny][nx]:
             solution = tour(new_board, possible_moves, ny, nx, d+1)
             if solution is not None:
+                solution.board[y][x] = Piece(str(d))
                 return solution
     return None
 
